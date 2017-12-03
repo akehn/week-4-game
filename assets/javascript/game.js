@@ -12,7 +12,6 @@ var targetScore = 0;
 var winCount = 0;
 var lossCount = 0;
 
-
 // Functions
 //--------------------------------------
 var startGame = function(){
@@ -48,6 +47,36 @@ console.log("-------------------------");
 
 var valueArray = [blueCrystal, greenCrystal, redCrystal, yellowCrystal];
 
+
+
+// Main Process
+//--------------------------------------
+$("#blue").click(function(){
+    addValues(valueArray[0]);
+    // console.log("Blue Click " + blueCrystal);
+    checkWin();
+});
+
+$("#green").click(function(){
+    addValues(valueArray[1]);
+    // console.log("Green Click " + greenCrystal);
+    checkWin();
+});
+
+$("#red").click(function(){
+    addValues(valueArray[2]);
+    // console.log("Red Click "+ redCrystal);
+    checkWin();
+});
+
+$("#yellow").click(function(){
+    addValues(valueArray[3]);
+    // console.log("Yellow Click " + yellowCrystal);
+    checkWin();
+});
+
+
+
 // Respond to crystal clicks
 var addValues = function(valueArray){
 
@@ -60,8 +89,8 @@ var addValues = function(valueArray){
     $("#yourScore").html(currentScore);
 
     checkWin();
+};
 
-}
 
     // Check if user Won, Lost, & Reset the game
     var checkWin = function() {
@@ -77,6 +106,8 @@ var addValues = function(valueArray){
 
             // Changes WinCount in HTML
             $("#losses").html(lossCount);
+
+            resetGame();
 
             // Restart the game
             startGame();
@@ -94,34 +125,28 @@ var addValues = function(valueArray){
             // Changes WinCount in HTML
             $("#wins").html(winCount);
 
+            resetGame();
+
             // Restart the game
             startGame();
-            
+
         }
-    }
-
-// Main Process
-//--------------------------------------
-$("#blue").click(function(){
-    addValues(valueArray[0]);
-    // console.log("Blue Click " + blueCrystal);
-});
-
-$("#green").click(function(){
-    addValues(valueArray[1]);
-    // console.log("Green Click " + greenCrystal);
-});
-
-$("#red").click(function(){
-    addValues(valueArray[2]);
-    // console.log("Red Click "+ redCrystal);
-});
-
-$("#yellow").click(function(){
-    addValues(valueArray[3]);
-    // console.log("Yellow Click " + yellowCrystal);
-
-    
-});
+    };
 };
+
+var resetGame = function(){
+    $("#yourScore").html('0');
+
+    valueArray = [blueCrystal, greenCrystal, redCrystal, yellowCrystal];
+
+    blueCrystal = Math.floor(Math.random() * (12 - 1 + 1) + 1);
+    
+    greenCrystal = Math.floor(Math.random() * (12 - 1 + 1) + 1);
+    
+    redCrystal = Math.floor(Math.random() * (12 - 1 + 1) + 1);
+    
+    yellowCrystal = Math.floor(Math.random() * (12 - 1 + 1) + 1);
+
+};
+
 startGame();
